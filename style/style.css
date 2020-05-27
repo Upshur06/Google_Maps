@@ -17,13 +17,13 @@ body {
   z-index: 30;
   font-weight: bold;
   text-transform: uppercase;
-  color: #333333
+  color: #333;
 }
 
 .search-container{
   width: 400px;
   height: 60px;
-  background-color: #333333;
+  background-color: #454E53;
   position: absolute;
   z-index: 30;
   top: 230px;
@@ -31,7 +31,7 @@ body {
   border-radius: 30px;
 }
 
-#search{
+.search{
   height: 100%;
   display: flex;
   align-items: center;
@@ -42,5 +42,22 @@ body {
 .search input{
   width: 100%;
   font-size: 25px;
+  border: none;
+  background-color: transparent;
+  color: white;
+}
 
+.search input:focus{
+  outline: none;
+}
+
+.store-list-container{
+  width: 400px;
+  background-color: white;
+  position: absolute;
+  z-index: 30;
+  top: 320px;
+  left: 100px;
+  border-radius: 30px;
+  bottom: 20px;
 }
