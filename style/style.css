@@ -65,11 +65,14 @@ body {
   left: 100px;
   border-radius: 30px;
   bottom: 20px;
+
 }
 
 .stores-list{
   padding-left: 20px;
   padding-right: 20px;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .store-container{
