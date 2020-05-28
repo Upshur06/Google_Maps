@@ -1,6 +1,6 @@
 # Plan Of Action
 
-- Style the individual store item in the stores list
+- Style the individual store item in the stores list   DONE
 
 - Show all the stores in the stores list based on real world data
 

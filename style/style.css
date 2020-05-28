@@ -108,3 +108,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.store-address span{
+  display: block;
+}
