@@ -49,17 +49,28 @@ function showStoresMarker(){
         let latlng = new google.maps.LatLng(
             store.coordinates.latitude,
             store.coordinates.longitude);
-            console.log(latlng);
         let name = store.name;
         let address = store.addressLines[0];
-        createMarker(latlng,name,address);
+        let statusText = store.openStatusText;
+        let phoneNumber = store.phoneNumber;
+        createMarker(latlng,name,address,statusText,phoneNumber);
         bounds.extend(latlng);
     });
         map.fitBounds(bounds);
 }
 
-function createMarker(latlng, name, address) {
-   let html = "<b>" + name + "</b> <br/>" + address;
+function createMarker(latlng,name,address,statusText,phoneNumber) {
+   let html = " ";
+
+          html += `
+              <div class="store-info-window">
+                  <div class="store-info-name">${name}</div>
+                  <div class="store-info-status">${statusText}</div>
+                  <div class="store-info-address"><div class="circle"><i class="fas fa-location-arrow"></div></i>${address}</div>
+                  <div class="store-info-phone"><div class="circle"><i class="fas fa-phone-alt"></i></div>${phoneNumber}</div>
+              </div>
+          `
+
    let marker = new google.maps.Marker({
      map: map,
      position: latlng
