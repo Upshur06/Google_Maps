@@ -1,6 +1,7 @@
 let storesList = document.querySelector('.stores-list');
 
 var map;
+let markers = [];
 function initMap() {
   let losAngeles = {
        lat: 34.063380,
@@ -11,6 +12,7 @@ function initMap() {
     zoom: 8
   });
   displayStores();
+  showStoresMarker();
 ;}
 
 
@@ -39,4 +41,30 @@ function displayStores(){
           storesList.innerHTML = storesHtml;
 }
 
-// displayStores();
+function showStoresMarker(){
+  let bounds = new google.maps.LatLngBounds();
+    stores.forEach(function(store, index){
+        let latlng = new google.maps.LatLng(
+            store.coordinates.latitude,
+            store.coordinates.longitude);
+            console.log(latlng);
+        let name = store.name;
+        let address = store.addressLines[0];
+        createMarker(latlng,name,address);
+        bounds.extend(latlng);
+    });
+        map.fitBounds(bounds);
+}
+
+function createMarker(latlng, name, address) {
+   let html = "<b>" + name + "</b> <br/>" + address;
+   let marker = new google.maps.Marker({
+     map: map,
+     position: latlng
+   });
+   // google.maps.event.addListener(marker, 'click', function() {
+   //   infoWindow.setContent(html);
+   //   infoWindow.open(map, marker);
+   // });
+   markers.push(marker);
+ }
