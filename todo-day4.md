@@ -6,4 +6,4 @@
 
 - Allow a user to search for the stores in the zip code  DONE
 
-- Add a beautiful transition on the hover of an individual store
+- Add a beautiful transition on the hover of an individual store  DONE

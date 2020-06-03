@@ -1,5 +1,4 @@
 
-
 var map;
 let markers = [];
 let infoWindow;
@@ -45,14 +44,13 @@ function clearLocations(){
 
 
 function setOnClickListener() {
-    var storeElements = document.querySelectorAll('.store-container');
+    let storeElements = document.querySelectorAll('.store-container');
     storeElements.forEach(function(elem, index){
         elem.addEventListener('click', function(){
             google.maps.event.trigger(markers[index], 'click');
         })
     });
 }
-
 
 function displayStores(stores){
   let storesHtml = "";
@@ -61,6 +59,7 @@ function displayStores(stores){
         let phoneNumber = store.phoneNumber;
           storesHtml += `
               <div class="store-container">
+                  <div class="store-container-background">
                     <div class="store-info-container">
                         <div class="store-address">
                           <span>${address[0]}</span>
@@ -73,6 +72,7 @@ function displayStores(stores){
                             ${index + 1}
                         </div>
                     </div>
+                  </div>
               </div>
           `
     });
@@ -96,23 +96,36 @@ function showStoresMarker(stores){
 }
 
 function createMarker(latlng,name,address,statusText,phoneNumber,index) {
-   let html = " ";
 
-          html += `
+   let html = `
               <div class="store-info-window">
-                  <div class="store-info-name">${name}</div>
-                  <div class="store-info-status">${statusText}</div>
-                  <div class="store-info-address"><div class="circle"><i class="fas fa-location-arrow"></div></i>${address}</div>
-                  <div class="store-info-phone"><div class="circle"><i class="fas fa-phone-alt"></i></div>${phoneNumber}</div>
+                  <div class="store-info-name">
+                    ${name}
+                  </div>
+                  <div class="store-info-status">
+                    ${statusText}
+                  </div>
+                  <div class="store-info-address">
+                    <div class="circle">
+                      <i class="fas fa-location-arrow"></i>
+                    </div>
+                    ${address}
+                  </div>
+                  <div class="store-info-phone">
+                    <div class="circle">
+                      <i class="fas fa-phone-alt"></i>
+                    </div>
+                    ${phoneNumber}
+                  </div>
               </div>
-          `
+          `;
 
    let marker = new google.maps.Marker({
      map: map,
      position: latlng,
      label: `${index + 1}`
    });
-   google.maps.event.addListener(marker, 'mouseover', function() {
+   google.maps.event.addListener(marker, 'click', function() {
      infoWindow.setContent(html);
      infoWindow.open(map, marker);
    });
